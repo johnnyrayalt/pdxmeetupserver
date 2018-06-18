@@ -45,7 +45,7 @@ public class Sql2oUserDaoTest {
     public void getAll_returnsAllUsers() throws Exception {
         User user = setNewUser();
         User user1 = setNewUser();
-        assertEquals(2, userDao.getAll());
+        assertEquals(2, userDao.getAll().size());
     }
 
     //Helpers
