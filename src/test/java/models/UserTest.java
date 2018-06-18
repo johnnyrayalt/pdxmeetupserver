@@ -15,6 +15,9 @@ public class UserTest {
 
     @Test
     public void getPhoto() {
+        User user = setNewUser();
+        user.setPhoto("http://knowyourmeme.com/memes/woll-smoth");
+        assertEquals("http://knowyourmeme.com/memes/woll-smoth", user.getPhoto());
     }
 
     @Test
