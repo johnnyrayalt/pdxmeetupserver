@@ -1,8 +1,7 @@
 package dao;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import models.User;
+import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -13,7 +12,7 @@ public class Sql2oUserDaoTest {
     private static Connection conn;
 
     @BeforeClass
-    public void setUp() throws Exception {
+    public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/pdxmeetups_test";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
         userDao = new Sql2oUserDao(sql2o);
@@ -26,6 +25,22 @@ public class Sql2oUserDaoTest {
         userDao.clearAllUsers();
     }
 
+    @AfterClass
+    public static void shutDown() throws Exception {
+        conn.close();
+        System.out.println("connection closed");
+    }
 
+    @Test
+    public void add_addsUserWithCorrectId() {
+        User user = setNewUser();
+        userDao.add(user);
+        assertNotEquals(0, user.getId());
+    }
+
+    //Helpers
+    public User setNewUser() {
+        return new User("John Doe", "N/A");
+    }
 
 }

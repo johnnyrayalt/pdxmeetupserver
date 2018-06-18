@@ -5,7 +5,7 @@ import models.User;
 public interface UserDao {
 
     //Create
-//    void add(User user);
+    void add(User user);
 
     //Read
 
