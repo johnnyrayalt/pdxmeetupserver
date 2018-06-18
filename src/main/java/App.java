@@ -16,7 +16,7 @@ public class App {
         Gson gson = new Gson();
 
         staticFileLocation("/public");
-        String connectionString = "jbbc:postgresql://localhost:5432/pdxmeetups";
+        String connectionString = "postgresql://localhost:5432/pdxmeetups";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
         userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();
@@ -33,6 +33,13 @@ public class App {
         get("/api/users", "application/json", (request, response) -> {
             response.type("application/json");
             return gson.toJson(userDao.getAll());
+        });
+
+        get("/api/users/:id", "application/json", (request, response) -> {
+            response.type("application/json");
+            int userId = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(userDao.findById(userId));
         });
     }
 }
