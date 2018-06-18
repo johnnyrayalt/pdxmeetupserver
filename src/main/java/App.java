@@ -3,9 +3,6 @@ import dao.Sql2oUserDao;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
-import java.util.Map;
-
 import static spark.Spark.*;
 
 public class App {
