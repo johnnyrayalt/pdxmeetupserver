@@ -48,6 +48,14 @@ public class Sql2oUserDaoTest {
         assertEquals(2, userDao.getAll().size());
     }
 
+    @Test
+    public void findById_returnsCorrectUser() {
+        User user = setNewUser();
+        User user1 = setNewUser();
+        User userToFindById = userDao.findById(user1.getId());
+        assertEquals(user1, userToFindById);
+    }
+
     //Helpers
     public User setNewUser() {
         User user = new User("John Doe", "N/A");
