@@ -49,7 +49,7 @@ public class Sql2oUserDaoTest {
     }
 
     @Test
-    public void findById_returnsCorrectUser() {
+    public void findById_returnsCorrectUser() throws Exception {
         User user = setNewUser();
         User user1 = setNewUser();
         User userToFindById = userDao.findById(user1.getId());
@@ -57,10 +57,18 @@ public class Sql2oUserDaoTest {
     }
 
     @Test
-    public void update_updatesUsersNameAndOrPhotoCorrectly() {
+    public void update_updatesUsersNameAndOrPhotoCorrectly() throws Exception {
         User user = setNewUser();
         userDao.update(user.getId(), "Jim Doe", "Test");
         assertEquals("Jim Doe", userDao.findById(user.getId()).getName());
+    }
+
+    @Test
+    public void deleteById_deletesUserByTheirId() throws Exception {
+        User user = setNewUser();
+        User user1 = setNewUser();
+        userDao.deleteById(user.getId());
+        assertEquals(1, userDao.getAll().size());
     }
 
     //Helpers
