@@ -6,13 +6,22 @@ import org.sql2o.Sql2o;
 import static spark.Spark.*;
 
 public class App {
-    public static void main(String[] args) {
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567;
+    }
 
+    public static void main(String[] args) {
+        port(getHerokuAssignedPort());
+        staticFileLocation("/public");
+        
         Sql2oUserDao userDao;
         Connection conn;
         Gson gson = new Gson();
 
-        staticFileLocation("/public");
         String connectionString = "postgresql://localhost:5432/pdxmeetups";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
         userDao = new Sql2oUserDao(sql2o);
