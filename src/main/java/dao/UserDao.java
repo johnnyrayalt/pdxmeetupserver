@@ -11,9 +11,9 @@ public interface UserDao {
 
     //Read
     List<User> getAll();
+    User findById(int id);
 
     //Update
-
 
     //Delete
     void clearAllUsers();

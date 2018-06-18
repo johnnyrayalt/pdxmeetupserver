@@ -35,6 +35,15 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
+    public User findById(int id) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM users WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(User.class);
+        }
+    }
+
+    @Override
     public void clearAllUsers() {
         String sql = "DELETE FROM users";
         try(Connection con = sql2o.open()) {
