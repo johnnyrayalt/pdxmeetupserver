@@ -1,7 +1,10 @@
 package dao;
 
 import models.User;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -32,15 +35,24 @@ public class Sql2oUserDaoTest {
     }
 
     @Test
-    public void add_addsUserWithCorrectId() {
+    public void add_addsUserWithCorrectId() throws Exception {
         User user = setNewUser();
         userDao.add(user);
         assertNotEquals(0, user.getId());
     }
 
+    @Test
+    public void getAll_returnsAllUsers() throws Exception {
+        User user = setNewUser();
+        User user1 = setNewUser();
+        assertEquals(2, userDao.getAll());
+    }
+
     //Helpers
     public User setNewUser() {
-        return new User("John Doe", "N/A");
+        User user = new User("John Doe", "N/A");
+        userDao.add(user);
+        return user;
     }
 
 }
