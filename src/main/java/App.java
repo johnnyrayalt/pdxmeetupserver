@@ -41,12 +41,20 @@ public class App {
             return gson.toJson(userDao.findById(userId));
         });
 
-        // Update User
-        post("/api/users/:id", "application/json", (request, response) -> {
+
+        // Post User update
+        post("/api/users/:id/update", "application/json", (request, response) -> {
             int userId = Integer.parseInt(request.params("id"));
             User updatedUser = gson.fromJson(request.body(), User.class);
             userDao.update(userId, updatedUser.getName(), updatedUser.getPhoto());
             return gson.toJson(userDao.findById(userId));
+        });
+
+        // Delete user
+        post("/api/users/:id/delete", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+            userDao.deleteById(userId);
+            return gson.toJson(userDao.getAll());
         });
 
         //FILTERS
