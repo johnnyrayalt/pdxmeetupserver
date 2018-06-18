@@ -5,6 +5,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import static spark.Spark.post;
+import static spark.Spark.get;
 import static spark.Spark.staticFileLocation;
 
 public class App {
@@ -21,12 +22,17 @@ public class App {
         conn = sql2o.open();
 
 
-        post("api/user/new", "application/json", (request, response) -> {
+        post("/api/users/new", "application/json", (request, response) -> {
             User user = gson.fromJson(request.body(), User.class);
             userDao.add(user);
             response.status(201);
             response.type("application/json");
             return gson.toJson(user);
+        });
+
+        get("/api/users", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(userDao.getAll());
         });
     }
 }
