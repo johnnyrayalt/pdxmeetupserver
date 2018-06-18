@@ -22,6 +22,9 @@ public class UserTest {
 
     @Test
     public void getId() {
+        User user = setNewUser();
+        user.setId(1);
+        assertEquals(1, user.getId());
     }
 
     //Helpers
