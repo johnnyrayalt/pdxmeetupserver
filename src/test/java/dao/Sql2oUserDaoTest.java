@@ -56,6 +56,13 @@ public class Sql2oUserDaoTest {
         assertEquals(user1, userToFindById);
     }
 
+    @Test
+    public void update_updatesUsersNameAndOrPhotoCorrectly() {
+        User user = setNewUser();
+        userDao.update(user.getId(), "Jim Doe", "Test");
+        assertEquals("Jim Doe", userDao.findById(user.getId()).getName());
+    }
+
     //Helpers
     public User setNewUser() {
         User user = new User("John Doe", "N/A");

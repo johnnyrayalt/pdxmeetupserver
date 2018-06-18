@@ -44,6 +44,20 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
+    public void update(int id, String newName, String newPhoto) {
+        String sql = "UPDATE users SET (name, photo) = (:name, :photo) WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", newName)
+                    .addParameter("photo", newPhoto)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void clearAllUsers() {
         String sql = "DELETE FROM users";
         try(Connection con = sql2o.open()) {

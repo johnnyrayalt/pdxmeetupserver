@@ -14,6 +14,7 @@ public interface UserDao {
     User findById(int id);
 
     //Update
+    void update(int id, String newName, String newPhoto);
 
     //Delete
     void clearAllUsers();
