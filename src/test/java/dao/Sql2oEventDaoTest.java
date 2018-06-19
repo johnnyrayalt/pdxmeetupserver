@@ -63,12 +63,12 @@ public class Sql2oEventDaoTest {
         assertEquals(1, eventDao.getAll().size());
     }
 
-
-    //Helpers
-    public User setNewUser() {
-        User user = new User("Jim", "n/a");
-        userDao.add(user);
-        return user;
+    @Test
+    public void userIdIsReturnedCorrectly() throws Exception {
+        Event event =  new Event(1, 2);
+        int originalEventId = event.getuserId();
+        eventDao.add(event);
+        assertEquals(originalEventId, eventDao.findById(event.getId()).getuserId());
     }
 
     public Event setNewEvent() {

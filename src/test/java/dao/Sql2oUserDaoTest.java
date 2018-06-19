@@ -74,6 +74,21 @@ public class Sql2oUserDaoTest {
         assertEquals(1, userDao.getAll().size());
     }
 
+    @Test
+    public void getAllEventsByUser_ReturnsAllEventsByUserId() throws Exception {
+        User user = setNewUser();
+        int userId = user.getId();
+        Event newEvent = new Event(1, userId);
+        Event newEvent1 = new Event(2, userId);
+        Event newEvent2 = new Event(3, userId);
+        eventDao.add(newEvent);
+        eventDao.add(newEvent1);
+        assertEquals(2, userDao.getAllEventsByUser(userId).size());
+        assertTrue(userDao.getAllEventsByUser(userId).contains(newEvent));
+        assertTrue(userDao.getAllEventsByUser(userId).contains(newEvent1));
+        assertFalse(userDao.getAllEventsByUser(userId).contains(newEvent2));
+    }
+
     //Helpers
     public User setNewUser() {
         User user = new User("John Doe", "N/A");

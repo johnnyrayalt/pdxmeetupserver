@@ -45,6 +45,15 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
+    public List<Event> getAllEventsByUser(int userId) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM events WHERE userid = :userId")
+                    .addParameter("userId", userId)
+                    .executeAndFetch(Event.class);
+        }
+    }
+
+    @Override
     public void update(int id, String newName, String newPhoto) {
         String sql = "UPDATE users SET (name, photo) = (:name, :photo) WHERE id = :id";
         try(Connection con = sql2o.open()){

@@ -13,7 +13,7 @@ public interface UserDao {
     //Read
     List<User> getAll();
     User findById(int id);
-
+    List<Event> getAllEventsByUser(int userId);
 
     //Update
     void update(int id, String newName, String newPhoto);

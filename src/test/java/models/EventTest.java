@@ -30,7 +30,7 @@ public class EventTest {
     @Test
     public void getUserId_getsUserIdCorrectly() throws Exception{
         Event event = setNewEvent();
-        assertEquals(2, event.getUserId());
+        assertEquals(2, event.getuserId());
     }
 
     //Helpers

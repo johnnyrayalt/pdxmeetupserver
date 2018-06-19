@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import exceptions.ApiException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -88,6 +89,29 @@ public class App {
             int userId = Integer.parseInt(request.params("id"));
             userDao.deleteById(userId);
             return gson.toJson(userDao.getAll());
+        });
+
+
+        // Return all events by user ID
+        get("/api/users/:id/events", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+
+            User userToFind = userDao.findById(userId);
+            List<Event> allEvents;
+            if (userToFind == null) {
+                throw new ApiException(404, String.format("No Users with the id: \"%s\" exists", request.params("id")));
+            }
+            allEvents = userDao.getAllEventsByUser(userId);
+            return gson.toJson(allEvents);
+        });
+
+        post("/api/users/:id/event/new", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+            Event event = gson.fromJson(request.body(), Event.class);
+            event.setuserId(userId);
+            eventDao.add(event);
+            response.status(201);
+            return gson.toJson(event);
         });
 
 
