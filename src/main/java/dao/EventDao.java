@@ -11,7 +11,7 @@ public interface EventDao {
 
     //Read
     List<Event> getAll();
-//    Event findById(int id);
+    Event findById(int id);
 
     //Update
 //    void update(int id);
