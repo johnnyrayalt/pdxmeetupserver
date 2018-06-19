@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.heroku.pdxmeetups</groupId>
-    <artifactId>pdxmeetups</artifactId>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
     <version>1.0</version>
 
     <dependencies>
+        <!-- We need to list out ALL dependencies our project needs. If you have dependencies not listed here, but sure to add them -->
         <dependency>
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-core</artifactId>
@@ -28,17 +29,6 @@
             <groupId>org.sql2o</groupId>
             <artifactId>sql2o</artifactId>
             <version>1.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.heroku.api</groupId>
-            <artifactId>heroku-json-gson</artifactId>
-            <version>0.10</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -67,6 +57,7 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
+                        <!-- Change this to YOUR main class name if different. Usually, it will be App. -->
                         <manifest>
                             <mainClass>App</mainClass>
                         </manifest>
@@ -76,11 +67,13 @@
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.1</version>
+                <version>0.4.4</version>
                 <configuration>
-                    <appName>${heroku.appName}</appName>
+                    <jdkVersion>1.8</jdkVersion>
+                    <!-- Change this to YOUR application name! -->
+                    <appName>pdxmeetups</appName>
                     <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* App</web>
+                        <web>java -jar target/my-app-1.0-jar-with-dependencies.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
