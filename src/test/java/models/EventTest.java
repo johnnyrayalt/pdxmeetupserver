@@ -19,6 +19,9 @@ public class EventTest {
 
     @Test
     public void getId() {
+        Event event = setNewEvent();
+        event.setId(1);
+        assertEquals(1, event.getId());
     }
 
     //Helpers
