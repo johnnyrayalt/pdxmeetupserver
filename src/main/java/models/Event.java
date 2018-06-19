@@ -4,26 +4,31 @@ import java.util.List;
 import java.util.Objects;
 
 public class Event {
-    private List<Event> eventList;
+    private int meetUpApiId;
+    private int id;
 
-    public Event(List<Event> eventList) {
-        this.eventList = eventList;
+    public Event(int meetUpApiId) {
+        this.meetUpApiId = meetUpApiId;
     }
 
-    public List<Event> getEventList() { return eventList; }
-    public void setEventList(List<Event> eventList) { this.eventList = eventList; }
+    public int getMeetUpApiId() { return meetUpApiId; }
+    public void setMeetUpApiId(int meetUpApiId) { this.meetUpApiId = meetUpApiId; }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(eventList, event.eventList);
+        return meetUpApiId == event.meetUpApiId &&
+                id == event.id;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(eventList);
+        return Objects.hash(meetUpApiId, id);
     }
 }
