@@ -1,5 +1,5 @@
-CREATE DATABASE pdxmeetups;
-\c pdxmeetups;
+CREATE DATABASE pdxmeetupsdb;
+\c pdxmeetupsdb;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
