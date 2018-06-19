@@ -5,6 +5,8 @@ import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Sql2oEventDaoTest {
@@ -36,6 +38,15 @@ public class Sql2oEventDaoTest {
         Event event = setNewEvent();
         assertNotEquals(0, event.getId());
     }
+
+    @Test
+    public void getAll_returnsAllEvents() throws Exception {
+        Event event = setNewEvent();
+        Event event1 = setNewEvent();
+        assertEquals(2, eventDao.getAll().size());
+    }
+
+    
 
     //Helpers
     public Event setNewEvent() {

@@ -10,7 +10,7 @@ public interface EventDao {
     void add(Event event);
 
     //Read
-//    List<Event> getAll();
+    List<Event> getAll();
 //    Event findById(int id);
 
     //Update
