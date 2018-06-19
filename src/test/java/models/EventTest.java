@@ -11,22 +11,15 @@ public class EventTest {
         assertTrue(event instanceof Event);
     }
 
-//    @Test
-//    public void getIdOfEventFromMeetUpApi() {
-//
-//    }
-//
-//    @Test
-//    public void setIdOfEventFromMeetUpApi() {
-//    }
-//
-//    @Test
-//    public void getId() {
-//    }
-//
-//    @Test
-//    public void setId() {
-//    }
+    @Test
+    public void getIdOfEventFromMeetUpApi() {
+        Event event = setNewEvent();
+        assertEquals(1, event.getIdOfEventFromMeetUpApi());
+    }
+
+    @Test
+    public void getId() {
+    }
 
     //Helpers
     public Event setNewEvent() {
