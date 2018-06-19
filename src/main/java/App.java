@@ -31,7 +31,7 @@ public class App {
         Sql2o sql2o;
         if(isProduction) {
             //Heroku Credentials
-            String connectionString = "jdbc:postgresql://uvwijeyphjojeu:0c4765d4acb8fc63391654eee96e7470e53747450fae08f30e91412c012a577f@ec2-23-21-238-28.compute-1.amazonaws.com:5432/d32rom86rntfh9";
+            String connectionString = "jdbc:postgresql://ec2-23-21-238-28.compute-1.amazonaws.com:5432/d32rom86rntfh9";
             sql2o = new Sql2o(connectionString, "uvwijeyphjojeu", "0c4765d4acb8fc63391654eee96e7470e53747450fae08f30e91412c012a577f");
         } else {
             //Local PostgresDB for Test Environment
