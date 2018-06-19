@@ -5,7 +5,6 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import exceptions.ApiException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.*;
@@ -42,7 +41,11 @@ public class App {
         userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();
 
-
+//              \\
+//              \\
+//  ADD A USER  \\
+//              \\
+//              \\
         // Add a new User
         post("/api/users/new", "application/json", (request, response) -> {
             User user = gson.fromJson(request.body(), User.class);
@@ -83,6 +86,12 @@ public class App {
             userDao.deleteById(userId);
             return gson.toJson(userDao.getAll());
         });
+
+
+
+
+
+
 
         options("/*", (request, response) -> {
             String accessControlRequestHeaders = request

@@ -4,25 +4,14 @@ CREATE DATABASE pdxmeetups;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
-  photo VARCHAR
-);
-
-
-CREATE TABLE events (
-  id SERIAL PRIMARY KEY
+  photo VARCHAR,
+  listofeventids TEXT
 );
 
 
 CREATE TABLE topics (
   id SERIAL PRIMARY KEY,
-  name VARCHAR
-);
-
-
-CREATE TABLE users_events (
-  id SERIAL PRIMARY KEY,
-  userid INTEGER,
-  eventid INTEGER
+  topic VARCHAR
 );
 
 
@@ -32,11 +21,5 @@ CREATE TABLE users_topics (
   topicid INTEGER
 );
 
-
-CREATE TABLE topics_events (
-  id SERIAL PRIMARY KEY,
-  topicid INTEGER,
-  eventid INTEGER
-);
 
 CREATE DATABASE pdxmeetups_test WITH TEMPLATE pdxmeetups;
