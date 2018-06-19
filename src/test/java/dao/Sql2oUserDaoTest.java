@@ -13,7 +13,7 @@ public class Sql2oUserDaoTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        String connectionString = "jdbc:postgresql://localhost:5432/pdxmeetups_test";
+        String connectionString = "jdbc:postgresql://localhost:5432/pdxmeetupsdb_test";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
         userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();

@@ -11,8 +11,8 @@ public class Event {
         this.meetUpApiId = meetUpApiId;
     }
 
-    public int getMeetUpApiId() { return meetUpApiId; }
-    public void setMeetUpApiId(int meetUpApiId) { this.meetUpApiId = meetUpApiId; }
+    public int getmeetUpApiId() { return meetUpApiId; }
+    public void setmeetUpApiId(int meetUpApiId) { this.meetUpApiId = meetUpApiId; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

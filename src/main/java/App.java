@@ -89,6 +89,8 @@ public class App {
 
 
 
+// get all events for users  /api/users/:id/events
+// post event update to /api/users/:id/events/update
 
 
 
