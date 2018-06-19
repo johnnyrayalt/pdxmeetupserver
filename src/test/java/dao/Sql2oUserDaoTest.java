@@ -1,14 +1,19 @@
 package dao;
 
+import models.Event;
 import models.User;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class Sql2oUserDaoTest {
     private static Sql2oUserDao userDao;
+    private static Sql2oEventDao eventDao;
     private static Connection conn;
 
     @BeforeClass
@@ -16,6 +21,7 @@ public class Sql2oUserDaoTest {
         String connectionString = "jdbc:postgresql://localhost:5432/pdxmeetupsdb_test";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
         userDao = new Sql2oUserDao(sql2o);
+        eventDao = new Sql2oEventDao(sql2o);
         conn = sql2o.open();
     }
 

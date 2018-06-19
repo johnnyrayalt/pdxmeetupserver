@@ -27,6 +27,7 @@ public class UserTest {
         assertEquals(1, user.getId());
     }
 
+
     //Helpers
     public User setNewUser() {
         return new User("John", "N/A");

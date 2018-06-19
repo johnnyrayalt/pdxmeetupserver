@@ -27,8 +27,14 @@ public class EventTest {
         assertEquals(1, event.getId());
     }
 
+    @Test
+    public void getUserId_getsUserIdCorrectly() throws Exception{
+        Event event = setNewEvent();
+        assertEquals(2, event.getUserId());
+    }
+
     //Helpers
     public Event setNewEvent() {
-        return new Event(1);
+        return new Event(1, 2);
     }
 }

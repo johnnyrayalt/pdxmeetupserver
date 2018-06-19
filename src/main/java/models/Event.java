@@ -5,14 +5,19 @@ import java.util.Objects;
 
 public class Event {
     private int meetUpApiId;
+    private int userId;
     private int id;
 
-    public Event(int meetUpApiId) {
+    public Event(int meetUpApiId, int userId) {
         this.meetUpApiId = meetUpApiId;
+        this.userId = userId;
     }
 
     public int getmeetUpApiId() { return meetUpApiId; }
     public void setmeetUpApiId(int meetUpApiId) { this.meetUpApiId = meetUpApiId; }
+
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

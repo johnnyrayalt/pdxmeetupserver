@@ -4,12 +4,13 @@ CREATE DATABASE pdxmeetupsdb;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
-  photo VARCHAR
+  photo VARCHAR,
 );
 
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,
-  meetupapiid INTEGER
+  meetupapiid INTEGER,
+  userid INTEGER
 );
 
 CREATE TABLE topics (

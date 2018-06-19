@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
+import dao.Sql2oEventDao;
 import dao.Sql2oUserDao;
+import models.Event;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -25,6 +27,7 @@ public class App {
         port(getHerokuAssignedPort());
         staticFileLocation("/public");
         Sql2oUserDao userDao;
+        Sql2oEventDao eventDao;
         Connection conn;
         Gson gson = new Gson();
         Sql2o sql2o;
@@ -34,10 +37,11 @@ public class App {
             sql2o = new Sql2o(connectionString, "uvwijeyphjojeu", "0c4765d4acb8fc63391654eee96e7470e53747450fae08f30e91412c012a577f");
         } else {
             //Local PostgresDB for Test Environment
-            String connectionString = "postgresql://localhost:5432/pdxmeetups";
+            String connectionString = "postgresql://localhost:5432/pdxmeetupsdb";
             sql2o = new Sql2o(connectionString, null, null);
         }
 
+        eventDao = new Sql2oEventDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();
 
@@ -71,7 +75,6 @@ public class App {
             return gson.toJson(userToFind);
         });
 
-
         // Post User update
         post("/api/users/:id/update", "application/json", (request, response) -> {
             int userId = Integer.parseInt(request.params("id"));
@@ -86,13 +89,6 @@ public class App {
             userDao.deleteById(userId);
             return gson.toJson(userDao.getAll());
         });
-
-
-
-// get all events for users  /api/users/:id/events
-// post event update to /api/users/:id/events/update
-
-
 
 
         options("/*", (request, response) -> {

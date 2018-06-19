@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
@@ -13,6 +12,10 @@ public class User {
         this.photo = photo;
     }
 
+    public User(String name, String photo, String eventIds) {
+        this.name = name;
+        this.photo = photo;
+    }
 
     // NAME
     public String getName() { return name; }
@@ -25,6 +28,7 @@ public class User {
     // ID
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+
 
     @Override
     public boolean equals(Object o) {

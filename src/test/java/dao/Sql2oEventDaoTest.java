@@ -62,7 +62,7 @@ public class Sql2oEventDaoTest {
 
     //Helpers
     public Event setNewEvent() {
-        Event event =  new Event(1);
+        Event event =  new Event(1, 2);
         eventDao.add(event);
         return event;
     }
