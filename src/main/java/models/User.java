@@ -6,13 +6,11 @@ import java.util.Objects;
 public class User {
     private String name;
     private String photo;
-//    private list<Event> eventsList;
     private int id;
 
     public User(String name, String photo) {
         this.name = name;
         this.photo = photo;
-//        eventsList = new ArrayList<>(); //setter and getter needed
     }
 
 
