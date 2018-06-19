@@ -83,7 +83,6 @@
                 <version>2.0.1</version>
                 <configuration>
                     <jdkVersion>1.8</jdkVersion>
-                    <!-- Change this to YOUR application name! -->
                     <appName>pdxmeetups</appName>
                     <processTypes>
                         <web>java -jar target/my-app-1.0-jar-with-dependencies.jar</web>
