@@ -13,10 +13,7 @@ public interface EventDao {
     List<Event> getAll();
     Event findById(int id);
 
-    //Update
-//    void update(int id);
-
     //Delete
-//    void deleteById(int id);
+    void deleteById(int id);
     void clearAllEvents();
 }

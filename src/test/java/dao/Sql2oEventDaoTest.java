@@ -5,8 +5,6 @@ import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class Sql2oEventDaoTest {
@@ -34,7 +32,7 @@ public class Sql2oEventDaoTest {
     }
 
     @Test
-    public void add() throws Exception{
+    public void add_addsEvent() throws Exception{
         Event event = setNewEvent();
         assertNotEquals(0, event.getId());
     }
@@ -52,6 +50,14 @@ public class Sql2oEventDaoTest {
         Event event1 = setNewEvent();
         Event eventToFindById = eventDao.findById(event1.getId());
         assertEquals(event1, eventToFindById);
+    }
+
+    @Test
+    public void deleteById_deletesEventByTheirId() throws Exception {
+        Event event = setNewEvent();
+        Event event1 = setNewEvent();
+        eventDao.deleteById(event.getId());
+        assertEquals(1, eventDao.getAll().size());
     }
 
     //Helpers
