@@ -4,7 +4,7 @@ CREATE DATABASE pdxmeetupsdb;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR,
-  photo VARCHAR,
+  photo VARCHAR
 );
 
 CREATE TABLE events (

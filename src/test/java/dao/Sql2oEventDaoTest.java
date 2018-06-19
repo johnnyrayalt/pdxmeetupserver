@@ -1,6 +1,7 @@
 package dao;
 
 import models.Event;
+import models.User;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -9,6 +10,7 @@ import static org.junit.Assert.*;
 
 public class Sql2oEventDaoTest {
     private static Sql2oEventDao eventDao;
+    private static Sql2oUserDao userDao;
     private static Connection conn;
 
     @BeforeClass
@@ -55,12 +57,20 @@ public class Sql2oEventDaoTest {
     @Test
     public void deleteById_deletesEventByTheirId() throws Exception {
         Event event = setNewEvent();
-        Event event1 = setNewEvent();
+        Event event1 = new Event(2, 2);
+        eventDao.add(event1);
         eventDao.deleteById(event.getId());
         assertEquals(1, eventDao.getAll().size());
     }
 
+
     //Helpers
+    public User setNewUser() {
+        User user = new User("Jim", "n/a");
+        userDao.add(user);
+        return user;
+    }
+
     public Event setNewEvent() {
         Event event =  new Event(1, 2);
         eventDao.add(event);

@@ -1,6 +1,7 @@
 package dao;
 
 import models.Event;
+import models.User;
 
 import java.util.List;
 
