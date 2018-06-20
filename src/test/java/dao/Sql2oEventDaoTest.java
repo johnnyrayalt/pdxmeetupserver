@@ -40,6 +40,14 @@ public class Sql2oEventDaoTest {
     }
 
     @Test
+    public void addingEventSetsId() throws Exception {
+        Event testEvent = new Event(1,1);
+        int originalEventId = testEvent.getId();
+        eventDao.add(testEvent);
+        assertNotEquals(originalEventId, testEvent.getId());
+    }
+
+    @Test
     public void getAll_returnsAllEvents() throws Exception {
         Event event = setNewEvent();
         Event event1 = setNewEvent();

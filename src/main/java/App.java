@@ -105,10 +105,11 @@ public class App {
             return gson.toJson(allEvents);
         });
 
-        post("/api/users/:id/event/new", "application/json", (request, response) -> {
+        post("/api/users/:id/events/new", "application/json", (request, response) -> {
             int userId = Integer.parseInt(request.params("id"));
             Event event = gson.fromJson(request.body(), Event.class);
             event.setuserId(userId);
+            event.setId(userId);
             eventDao.add(event);
             response.status(201);
             return gson.toJson(event);
