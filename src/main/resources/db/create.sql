@@ -13,9 +13,9 @@ CREATE TABLE events (
   userid INTEGER
 );
 
-CREATE TABLE topics (
+CREATE TABLE keywords (
   id SERIAL PRIMARY KEY,
-  topic VARCHAR
+  keyword VARCHAR
 );
 
 
