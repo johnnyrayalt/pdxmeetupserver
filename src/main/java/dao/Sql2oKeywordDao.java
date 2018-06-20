@@ -35,6 +35,15 @@ public class Sql2oKeywordDao implements KeywordDao {
     }
 
     @Override
+    public Keyword findById(int id) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM keywords WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Keyword.class);
+        }
+    }
+
+    @Override
     public void clearAllKeywords() {
         String sql = "DELETE FROM keywords";
         try(Connection con = sql2o.open()) {

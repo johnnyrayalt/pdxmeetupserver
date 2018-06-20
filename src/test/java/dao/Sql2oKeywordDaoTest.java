@@ -56,6 +56,14 @@ public class Sql2oKeywordDaoTest {
         assertNotEquals(null, keywordDao.getAll().size());
     }
 
+    @Test
+    public void findById_returnsCorrectKeyword() throws Exception {
+        Keyword keyword = setNewKeyword();
+        Keyword keyword1 = setNewKeyword();
+        Keyword keywordToFindById = keywordDao.findById(keyword1.getId());
+        assertEquals(keyword1, keywordToFindById);
+    }
+
     public Keyword setNewKeyword() {
         Keyword keyword = new Keyword("java");
         keywordDao.add(keyword);
