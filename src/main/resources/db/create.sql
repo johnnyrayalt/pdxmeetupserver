@@ -18,12 +18,4 @@ CREATE TABLE keywords (
   keyword VARCHAR
 );
 
-
-CREATE TABLE users_topics (
-  id SERIAL PRIMARY KEY,
-  userid INTEGER,
-  topicid INTEGER
-);
-
-
 CREATE DATABASE pdxmeetupsdb_test WITH TEMPLATE pdxmeetupsdb;
