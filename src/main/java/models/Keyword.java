@@ -6,13 +6,12 @@ public class Keyword {
     private String keyword;
     private int id;
 
-
     public Keyword(String keyword) {
         this.keyword = keyword;
     }
 
-    public String getKeyword() { return keyword; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
+    public String getkeyword() { return keyword; }
+    public void setkeyword(String keyword) { this.keyword = keyword; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
