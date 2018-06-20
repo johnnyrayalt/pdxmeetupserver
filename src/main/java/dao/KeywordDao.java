@@ -13,6 +13,6 @@ public interface KeywordDao {
     Keyword findById(int id);
 
     //Delete
-//    void deleteById(int id);
+    void deleteById(int id);
     void clearAllKeywords();
 }

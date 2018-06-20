@@ -64,6 +64,15 @@ public class Sql2oKeywordDaoTest {
         assertEquals(keyword1, keywordToFindById);
     }
 
+    @Test
+    public void deleteById_deletesKeywordByTheirId() throws Exception {
+        Keyword keyword = setNewKeyword();
+        Keyword keyword1 = new Keyword("javascript");
+        keywordDao.add(keyword1);
+        keywordDao.deleteById(keyword.getId());
+        assertEquals(1, keywordDao.getAll().size());
+    }
+
     public Keyword setNewKeyword() {
         Keyword keyword = new Keyword("java");
         keywordDao.add(keyword);
