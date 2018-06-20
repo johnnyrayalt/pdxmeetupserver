@@ -7,7 +7,7 @@ public class Keyword {
     private int id;
 
 
-    private Keyword(String keyword) {
+    public Keyword(String keyword) {
         this.keyword = keyword;
     }
 
