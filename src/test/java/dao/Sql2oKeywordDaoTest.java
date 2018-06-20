@@ -49,6 +49,13 @@ public class Sql2oKeywordDaoTest {
         assertNotEquals(originalKeywordId, testKeyword.getId());
     }
 
+    @Test
+    public void getAll_returnsAllKeywords() throws Exception {
+        Keyword keyword = setNewKeyword();
+        Keyword keyword1 = setNewKeyword();
+        assertNotEquals(null, keywordDao.getAll().size());
+    }
+
     public Keyword setNewKeyword() {
         Keyword keyword = new Keyword("java");
         keywordDao.add(keyword);
