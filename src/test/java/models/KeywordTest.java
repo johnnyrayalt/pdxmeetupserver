@@ -17,7 +17,7 @@ public class KeywordTest {
     @Test
     public void getKeyword() {
         Keyword keyword = setNewKeyword();
-        assertEquals("Java", keyword.getKeyword());
+        assertEquals("Java", keyword.getkeyword());
     }
 
     @Test
