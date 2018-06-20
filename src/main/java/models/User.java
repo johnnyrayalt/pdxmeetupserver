@@ -12,11 +12,6 @@ public class User {
         this.photo = photo;
     }
 
-    public User(String name, String photo, String eventIds) {
-        this.name = name;
-        this.photo = photo;
-    }
-
     // NAME
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
