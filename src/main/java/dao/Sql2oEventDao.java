@@ -15,7 +15,7 @@ public class Sql2oEventDao implements EventDao{
 
     @Override
     public void add(Event event) {
-        String sql = "INSERT INTO events(meetupapiid, userid) VALUES (:meetUpApiId, :userId)";
+        String sql = "INSERT INTO events (meetupapiid, userid) VALUES (:meetUpApiId, :userId)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(event)
@@ -34,6 +34,16 @@ public class Sql2oEventDao implements EventDao{
                     .executeAndFetch(Event.class);
         }
     }
+
+    @Override
+    public List<Event> getAllEventsByUser(int userId){
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM events WHERE userid = :userId")
+                    .addParameter("userId", userId)
+                    .executeAndFetch(Event.class);
+        }
+    }
+
 
     @Override
     public Event findById(int id) {

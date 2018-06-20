@@ -17,6 +17,7 @@ public class Sql2oEventDaoTest {
     public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/pdxmeetupsdb_test";
         Sql2o sql2o = new Sql2o(connectionString, null, null);
+        userDao = new Sql2oUserDao(sql2o);
         eventDao = new Sql2oEventDao(sql2o);
         conn = sql2o.open();
     }
@@ -77,6 +78,21 @@ public class Sql2oEventDaoTest {
         int originalEventId = event.getuserId();
         eventDao.add(event);
         assertEquals(originalEventId, eventDao.findById(event.getId()).getuserId());
+    }
+
+    @Test
+    public void getAllEventsByUser_ReturnsAllEventsByUserId() throws Exception {
+        User user = new User("John Doe", "N/A");
+        userDao.add(user);
+        int userId = user.getId();
+        Event newEvent = new Event(1, userId);
+        Event newEvent1 = new Event(2, userId);
+        Event newEvent2 = new Event(3, userId);
+        eventDao.add(newEvent);
+        eventDao.add(newEvent1);
+        assertEquals(2, eventDao.getAllEventsByUser(userId).size());
+        System.out.println(userDao.findById(userId));
+        assertFalse(eventDao.getAllEventsByUser(userId).contains(newEvent2));
     }
 
     public Event setNewEvent() {

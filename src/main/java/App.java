@@ -91,17 +91,21 @@ public class App {
             return gson.toJson(userDao.getAll());
         });
 
-
+//                \\
+//                \\
+//  ADD AN EVENT  \\
+//                \\
+//                \\
         // Return all events by user ID
         get("/api/users/:id/events", "application/json", (request, response) -> {
             int userId = Integer.parseInt(request.params("id"));
-
             User userToFind = userDao.findById(userId);
             List<Event> allEvents;
             if (userToFind == null) {
                 throw new ApiException(404, String.format("No Users with the id: \"%s\" exists", request.params("id")));
             }
-            allEvents = userDao.getAllEventsByUser(userId);
+
+            allEvents = eventDao.getAllEventsByUser(userId);
             return gson.toJson(allEvents);
         });
 
@@ -109,7 +113,6 @@ public class App {
             int userId = Integer.parseInt(request.params("id"));
             Event event = gson.fromJson(request.body(), Event.class);
             event.setuserId(userId);
-            event.setId(userId);
             eventDao.add(event);
             response.status(201);
             return gson.toJson(event);

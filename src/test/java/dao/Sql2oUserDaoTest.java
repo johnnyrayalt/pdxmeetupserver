@@ -1,13 +1,9 @@
 package dao;
 
-import models.Event;
 import models.User;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -72,21 +68,6 @@ public class Sql2oUserDaoTest {
         User user1 = setNewUser();
         userDao.deleteById(user.getId());
         assertEquals(1, userDao.getAll().size());
-    }
-
-    @Test
-    public void getAllEventsByUser_ReturnsAllEventsByUserId() throws Exception {
-        User user = setNewUser();
-        int userId = user.getId();
-        Event newEvent = new Event(1, userId);
-        Event newEvent1 = new Event(2, userId);
-        Event newEvent2 = new Event(3, userId);
-        eventDao.add(newEvent);
-        eventDao.add(newEvent1);
-        assertEquals(2, userDao.getAllEventsByUser(userId).size());
-        assertTrue(userDao.getAllEventsByUser(userId).contains(newEvent));
-        assertTrue(userDao.getAllEventsByUser(userId).contains(newEvent1));
-        assertFalse(userDao.getAllEventsByUser(userId).contains(newEvent2));
     }
 
     //Helpers

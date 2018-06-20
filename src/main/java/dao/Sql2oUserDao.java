@@ -1,6 +1,5 @@
 package dao;
 
-import models.Event;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -41,15 +40,6 @@ public class Sql2oUserDao implements UserDao {
             return con.createQuery("SELECT * FROM users WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(User.class);
-        }
-    }
-
-    @Override
-    public List<Event> getAllEventsByUser(int userId) {
-        try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM events WHERE userid = :userId")
-                    .addParameter("userId", userId)
-                    .executeAndFetch(Event.class);
         }
     }
 

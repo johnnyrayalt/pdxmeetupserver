@@ -1,8 +1,6 @@
 package dao;
 
 import models.Event;
-import models.User;
-
 import java.util.List;
 
 public interface EventDao {
@@ -13,6 +11,7 @@ public interface EventDao {
     //Read
     List<Event> getAll();
     Event findById(int id);
+    List<Event> getAllEventsByUser(int userId);
 
     //Delete
     void deleteById(int id);
