@@ -10,7 +10,7 @@ public interface KeywordDao {
 
     //Read
     List<Keyword> getAll();
-//    Keyword findbyId(int id);
+    Keyword findById(int id);
 
     //Delete
 //    void deleteById(int id);
