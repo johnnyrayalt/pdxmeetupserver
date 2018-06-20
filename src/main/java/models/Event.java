@@ -28,12 +28,13 @@ public class Event {
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
         return meetUpApiId == event.meetUpApiId &&
+                userId == event.userId &&
                 id == event.id;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(meetUpApiId, id);
+        return Objects.hash(meetUpApiId, userId, id);
     }
 }

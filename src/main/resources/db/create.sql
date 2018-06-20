@@ -13,17 +13,9 @@ CREATE TABLE events (
   userid INTEGER
 );
 
-CREATE TABLE topics (
+CREATE TABLE keywords (
   id SERIAL PRIMARY KEY,
-  topic VARCHAR
+  keyword VARCHAR
 );
-
-
-CREATE TABLE users_topics (
-  id SERIAL PRIMARY KEY,
-  userid INTEGER,
-  topicid INTEGER
-);
-
 
 CREATE DATABASE pdxmeetupsdb_test WITH TEMPLATE pdxmeetupsdb;

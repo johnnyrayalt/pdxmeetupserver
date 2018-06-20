@@ -1,8 +1,10 @@
 import com.google.gson.Gson;
 import dao.Sql2oEventDao;
 import dao.Sql2oUserDao;
+import dao.Sql2oKeywordDao;
 import models.Event;
 import models.User;
+import models.Keyword;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import exceptions.ApiException;
@@ -29,6 +31,7 @@ public class App {
         staticFileLocation("/public");
         Sql2oUserDao userDao;
         Sql2oEventDao eventDao;
+        Sql2oKeywordDao keywordDao;
         Connection conn;
         Gson gson = new Gson();
         Sql2o sql2o;
@@ -44,6 +47,7 @@ public class App {
 
         eventDao = new Sql2oEventDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
+        keywordDao = new Sql2oKeywordDao(sql2o);
         conn = sql2o.open();
 
 //              \\
@@ -96,6 +100,7 @@ public class App {
 //  ADD AN EVENT  \\
 //                \\
 //                \\
+
         // Return all events by user ID
         get("/api/users/:id/events", "application/json", (request, response) -> {
             int userId = Integer.parseInt(request.params("id"));
@@ -118,6 +123,43 @@ public class App {
             return gson.toJson(event);
         });
 
+//                 \\
+//                 \\
+//  ADD A KEYWORD  \\
+//                 \\
+//                 \\
+
+        // Add a new Keyword
+        post("/api/keywords/new", "application/json", (request, response) -> {
+            Keyword keyword = gson.fromJson(request.body(), Keyword.class);
+            keywordDao.add(keyword);
+            response.status(201);
+            return gson.toJson(keyword);
+        });
+
+        // Returns all Keywords
+        get("/api/keywords", "application/json", (request, response) -> {
+            return gson.toJson(keywordDao.getAll());
+        });
+
+        // Returns Keyword by ID
+        get("/api/keywords/:id", "application/json", (request, response) -> {
+            int keywordId = Integer.parseInt(request.params("id"));
+            Keyword keywordToFind = keywordDao.findById(keywordId);
+
+            if (keywordToFind == null) {
+                throw new ApiException(404, String.format("No keyword with the id: \"%s\" exists.", request.params("id")));
+            }
+
+            return gson.toJson(keywordToFind);
+        });
+
+        // Delete keyword
+        post("/api/keywords/:id/delete", "application/json", (request, response) -> {
+            int keywordId = Integer.parseInt(request.params("id"));
+            keywordDao.deleteById(keywordId);
+            return gson.toJson(keywordDao.getAll());
+        });
 
         options("/*", (request, response) -> {
             String accessControlRequestHeaders = request
