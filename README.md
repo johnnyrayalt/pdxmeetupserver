@@ -1,6 +1,6 @@
 
 # PDX Tech Meet Up Server
-## Version 1.0
+## Version 1.1
 ## by Johnny Ray Alt
 
 ## About
@@ -61,3 +61,9 @@ If you wish to clone this repo, you will need to set up your own host.
 	"keyword": "Java" // Accepts: String
 }
 ```
+
+
+#### Changelog
+
+> v 1.1 - change meetUpApiId to accept String format instead of Integers
+> v 1.0 - release
