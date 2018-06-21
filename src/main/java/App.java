@@ -20,7 +20,7 @@ public class App {
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
-            isProduction = true;
+//            isProduction = true;
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
         return 4567;
@@ -35,16 +35,16 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
         Sql2o sql2o;
-        if(isProduction) {
+//        if(isProduction) {
             //Heroku Credentials
             System.out.println("connecting");
             String connectionString = "postgresql://ec2-50-19-86-139.compute-1.amazonaws.com:5432/dfq8a0gfmier3c";
             sql2o = new Sql2o(connectionString, "cjvrzjoubmofuu", "3a124b00bb2c3239ef330779ade5989a6b93cbd2ae50fc166185e94f329071de");
-        } else {
-            //Local PostgresDB for Test Environment
-            String connectionString = "postgresql://localhost:5432/pdxmeetupsdb";
-            sql2o = new Sql2o(connectionString, null, null);
-        }
+//        } else {
+//            //Local PostgresDB for Test Environment
+//            String connectionString = "postgresql://localhost:5432/pdxmeetupsdb";
+//            sql2o = new Sql2o(connectionString, null, null);
+//        }
 
         eventDao = new Sql2oEventDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
