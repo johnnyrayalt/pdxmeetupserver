@@ -1,20 +1,19 @@
 package models;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Event {
-    private int meetUpApiId;
+    private String meetUpApiId;
     private int userId;
     private int id;
 
-    public Event(int meetUpApiId, int userId) {
+    public Event(String meetUpApiId, int userId) {
         this.meetUpApiId = meetUpApiId;
         this.userId = userId;
     }
 
-    public int getmeetUpApiId() { return meetUpApiId; }
-    public void setmeetUpApiId(int meetUpApiId) { this.meetUpApiId = meetUpApiId; }
+    public String getmeetUpApiId() { return meetUpApiId; }
+    public void setmeetUpApiId(String meetUpApiId) { this.meetUpApiId = meetUpApiId; }
 
     public int getuserId() { return userId; }
     public void setuserId(int userId) { this.userId = userId; }
@@ -27,9 +26,9 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return meetUpApiId == event.meetUpApiId &&
-                userId == event.userId &&
-                id == event.id;
+        return userId == event.userId &&
+                id == event.id &&
+                Objects.equals(meetUpApiId, event.meetUpApiId);
     }
 
     @Override

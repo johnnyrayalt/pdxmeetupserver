@@ -9,7 +9,7 @@ CREATE TABLE users (
 
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,
-  meetupapiid INTEGER,
+  meetupapiid VARCHAR,
   userid INTEGER
 );
 
