@@ -30,11 +30,12 @@ public class EventTest {
     @Test
     public void getUserId_getsUserIdCorrectly() throws Exception{
         Event event = setNewEvent();
+        event.setuserId(2);
         assertEquals(2, event.getuserId());
     }
 
     //Helpers
     public Event setNewEvent() {
-        return new Event("1", 2);
+        return new Event("1");
     }
 }

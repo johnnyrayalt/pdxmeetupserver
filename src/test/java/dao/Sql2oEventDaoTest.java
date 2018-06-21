@@ -42,7 +42,7 @@ public class Sql2oEventDaoTest {
 
     @Test
     public void addingEventSetsId() throws Exception {
-        Event testEvent = new Event("1",1);
+        Event testEvent = new Event("1");
         int originalEventId = testEvent.getId();
         eventDao.add(testEvent);
         assertNotEquals(originalEventId, testEvent.getId());
@@ -66,7 +66,7 @@ public class Sql2oEventDaoTest {
     @Test
     public void deleteById_deletesEventByTheirId() throws Exception {
         Event event = setNewEvent();
-        Event event1 = new Event("2", 2);
+        Event event1 = new Event("2");
         eventDao.add(event1);
         eventDao.deleteById(event.getId());
         assertEquals(1, eventDao.getAll().size());
@@ -74,7 +74,7 @@ public class Sql2oEventDaoTest {
 
     @Test
     public void userIdIsReturnedCorrectly() throws Exception {
-        Event event =  new Event("1", 2);
+        Event event =  new Event("1");
         int originalEventId = event.getuserId();
         eventDao.add(event);
         assertEquals(originalEventId, eventDao.findById(event.getId()).getuserId());
@@ -84,10 +84,14 @@ public class Sql2oEventDaoTest {
     public void getAllEventsByUser_ReturnsAllEventsByUserId() throws Exception {
         User user = new User("John Doe", "N/A");
         userDao.add(user);
+        user.setId(2);
         int userId = user.getId();
-        Event newEvent = new Event("1", userId);
-        Event newEvent1 = new Event("2", userId);
-        Event newEvent2 = new Event("3", userId);
+        Event newEvent = new Event("1");
+        newEvent.setuserId(2);
+        Event newEvent1 = new Event("2");
+        newEvent1.setuserId(2);
+        Event newEvent2 = new Event("3");
+        newEvent2.setuserId(2);
         eventDao.add(newEvent);
         eventDao.add(newEvent1);
         assertEquals(2, eventDao.getAllEventsByUser(userId).size());
@@ -95,7 +99,8 @@ public class Sql2oEventDaoTest {
     }
 
     public Event setNewEvent() {
-        Event event =  new Event("1", 2);
+        Event event =  new Event("1");
+        event.setId(2);
         eventDao.add(event);
         return event;
     }
