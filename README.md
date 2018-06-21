@@ -6,6 +6,8 @@
 ## About
 This server app stores information about a user. This includes the users name, a photo url, and a list of tech events they are interested in attending in the Portland area.
 
+The front end repo for this project is located here: https://github.com/Pabarreyro/meet-match
+
 This is a student project and meant to be for documentation purposes only.
 
 If you wish to clone this repo, you will need to set up your own host.
