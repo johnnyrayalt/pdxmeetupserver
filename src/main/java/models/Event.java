@@ -7,9 +7,8 @@ public class Event {
     private int userId;
     private int id;
 
-    public Event(String meetUpApiId, int userId) {
+    public Event(String meetUpApiId) {
         this.meetUpApiId = meetUpApiId;
-        this.userId = userId;
     }
 
     public String getmeetUpApiId() { return meetUpApiId; }
