@@ -38,8 +38,8 @@ public class App {
 //        if(isProduction) {
             //Heroku Credentials
             System.out.println("connecting");
-            String connectionString = "postgresql://ec2-50-19-86-139.compute-1.amazonaws.com:5432/dfq8a0gfmier3c";
-            sql2o = new Sql2o(connectionString, "cjvrzjoubmofuu", "3a124b00bb2c3239ef330779ade5989a6b93cbd2ae50fc166185e94f329071de");
+            String connectionString = "postgresql://ec2-23-21-216-174.compute-1.amazonaws.com/defgl8hpj1pchs";
+            sql2o = new Sql2o(connectionString, "kijhxusgqhmlxu", "d4b68b416506c856cea1dcbf144829f629b4022b9181eb3a7f514d6445c2e4e2");
 //        } else {
 //            //Local PostgresDB for Test Environment
 //            String connectionString = "postgresql://localhost:5432/pdxmeetupsdb";
