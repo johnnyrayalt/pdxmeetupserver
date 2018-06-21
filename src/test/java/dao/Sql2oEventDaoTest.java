@@ -42,7 +42,7 @@ public class Sql2oEventDaoTest {
 
     @Test
     public void addingEventSetsId() throws Exception {
-        Event testEvent = new Event(1,1);
+        Event testEvent = new Event("1",1);
         int originalEventId = testEvent.getId();
         eventDao.add(testEvent);
         assertNotEquals(originalEventId, testEvent.getId());
@@ -66,7 +66,7 @@ public class Sql2oEventDaoTest {
     @Test
     public void deleteById_deletesEventByTheirId() throws Exception {
         Event event = setNewEvent();
-        Event event1 = new Event(2, 2);
+        Event event1 = new Event("2", 2);
         eventDao.add(event1);
         eventDao.deleteById(event.getId());
         assertEquals(1, eventDao.getAll().size());
@@ -74,7 +74,7 @@ public class Sql2oEventDaoTest {
 
     @Test
     public void userIdIsReturnedCorrectly() throws Exception {
-        Event event =  new Event(1, 2);
+        Event event =  new Event("1", 2);
         int originalEventId = event.getuserId();
         eventDao.add(event);
         assertEquals(originalEventId, eventDao.findById(event.getId()).getuserId());
@@ -85,18 +85,17 @@ public class Sql2oEventDaoTest {
         User user = new User("John Doe", "N/A");
         userDao.add(user);
         int userId = user.getId();
-        Event newEvent = new Event(1, userId);
-        Event newEvent1 = new Event(2, userId);
-        Event newEvent2 = new Event(3, userId);
+        Event newEvent = new Event("1", userId);
+        Event newEvent1 = new Event("2", userId);
+        Event newEvent2 = new Event("3", userId);
         eventDao.add(newEvent);
         eventDao.add(newEvent1);
         assertEquals(2, eventDao.getAllEventsByUser(userId).size());
-        System.out.println(userDao.findById(userId));
         assertFalse(eventDao.getAllEventsByUser(userId).contains(newEvent2));
     }
 
     public Event setNewEvent() {
-        Event event =  new Event(1, 2);
+        Event event =  new Event("1", 2);
         eventDao.add(event);
         return event;
     }

@@ -17,7 +17,7 @@ public class EventTest {
     @Test
     public void getmeetUpApiId_returnsIDFromMeetUpApi() throws Exception {
         Event event = setNewEvent();
-        assertEquals(1, event.getmeetUpApiId());
+        assertEquals("1", event.getmeetUpApiId());
     }
 
     @Test
@@ -35,6 +35,6 @@ public class EventTest {
 
     //Helpers
     public Event setNewEvent() {
-        return new Event(1, 2);
+        return new Event("1", 2);
     }
 }
